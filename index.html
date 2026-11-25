@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REbo AI | منصة توظيف وكلاء الذكاء الاصطناعي الأذكياء</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #060913;
+            --bg-card: rgba(17, 24, 39, 0.75);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-active: #3b82f6;
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --accent-purple: #8b5cf6;
+            --gold: #f59e0b;
+            --emerald: #10b981;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 40%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(6, 9, 19, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-logo {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+
+        .brand span {
+            background: linear-gradient(90deg, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-api {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            color: #60a5fa;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-api:hover {
+            background: rgba(59, 130, 246, 0.25);
+        }
+
+        .btn-api.connected {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--emerald);
+            color: var(--emerald);
+        }
+
+        /* Hero & Stats */
+        .hero {
+            text-align: center;
+            padding: 3rem 5% 2rem;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            background: linear-gradient(to left, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 680px;
+            margin: 0 auto 2rem;
+        }
+
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 1rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Main Workspace */
+        .workspace {
+            max-width: 1280px;
+            margin: auto;
+            padding: 0 5% 5rem;
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 2.2rem;
+        }
+
+        @media (max-width: 980px) {
+            .workspace { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.9rem; }
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.2rem;
+        }
+
+        .step-num {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        /* Catalog Grid */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .agent-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 1.3rem;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .agent-card.active {
+            border: 2px solid var(--primary);
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.12), rgba(17, 24, 39, 0.9));
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.4);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .verified-pill {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--emerald);
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .agent-card h3 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 0.35rem;
+        }
+
+        .agent-card p {
+            font-size: 0.83rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Configuration Card */
+        .panel-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .input-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .input-group label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group label span {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        input[type="text"], input[type="password"], textarea {
+            width: 100%;
+            background: rgba(6, 9, 19, 0.8);
+            border: 1px solid #334155;
+            color: var(--text-primary);
+            padding: 0.85rem 1.1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            outline: none;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Locks & Channels Grid */
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .channels-grid { grid-template-columns: 1fr; }
+        }
+
+        .channel-card {
+            background: rgba(6, 9, 19, 0.7);
+            border: 1px solid #334155;
+            border-radius: 14px;
+            padding: 0.9rem 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .channel-card:hover {
+            border-color: var(--gold);
+            background: rgba(245, 158, 11, 0.04);
+        }
+
+        .channel-card.unlocked {
+            border-color: var(--emerald);
+            background: rgba(16, 185, 129, 0.08);
+        }
+
+        .channel-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .channel-title {
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .channel-sub {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .tier-badge {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tier-free { background: rgba(16, 185, 129, 0.2); color: var(--emerald); }
+        .tier-pro { background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; }
+        .tier-ultra { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #fff; }
+
+        /* Billing Summary Bar */
+        .billing-summary {
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px dashed rgba(59, 130, 246, 0.4);
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .total-price {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--gold);
+        }
+
+        .btn-launch {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px -5px rgba(59, 130, 246, 0.5);
+            transition: 0.2s;
+        }
+
+        .btn-launch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px -5px rgba(59, 130, 246, 0.7);
+        }
+
+        /* Right Side: Phone Simulator */
+        .phone-wrapper {
+            position: sticky;
+            top: 90px;
+        }
+
+        .phone-frame {
+            background: #0b1120;
+            border: 3px solid #1e293b;
+            border-radius: 28px;
+            height: 650px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .phone-header {
+            background: #1e293b;
+            padding: 1rem 1.3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .agent-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .online-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+            color: var(--emerald);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--emerald);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .btn-clear {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #cbd5e1;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+
+        .bubble {
+            max-width: 82%;
+            padding: 0.85rem 1.1rem;
+            border-radius: 16px;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            animation: fadeIn 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bubble.agent {
+            background: #1e293b;
+            color: #f1f5f9;
+            align-self: flex-start;
+            border-bottom-right-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .bubble.user {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            align-self: flex-end;
+            border-bottom-left-radius: 4px;
+        }
+
+        .typing-indicator {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding: 0 1.2rem 0.5rem;
+            display: none;
+        }
+
+        .phone-footer {
+            padding: 0.9rem;
+            background: #111827;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            gap: 8px;
+        }
+
+        .phone-footer input {
+            border-radius: 20px;
+            padding: 0.7rem 1.1rem;
+        }
+
+        .btn-send-msg {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.82);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-box {
+            background: #111827;
+            border: 1px solid #334155;
+            border-radius: 22px;
+            max-width: 460px;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-price {
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin: 0.8rem 0;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .btn-confirm {
+            flex: 1;
+            background: var(--emerald);
+            color: #022c22;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .btn-cancel {
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 0.85rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 5%;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="brand">
+        <div class="brand-logo">⚡</div>
+        <span>REbo AI</span>
+    </div>
+    <div class="nav-actions">
+        <button class="btn-api" id="apiBtn" onclick="openApiModal()">
+            <span>🔑</span> <span id="apiBtnText">ربط Gemini API المجاني</span>
+        </button>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="pill-badge">🛡️ منصة موثوقة • تشفير بيانات 256-Bit SSL</div>
+    <h1>وظّف وكيل ذكاء اصطناعي لمشروعك في دقيقتين</h1>
+    <p>اختر التخصص من الكتالوج، سمِّ وكيلك، اكتب له قوانين عملك، وافتح له القنوات التي تريد (واتساب، إنستغرام، تيك توك، أو مكالمات هاتفية) ليعمل مكانك 24/7.</p>
+    
+    <div class="trust-bar">
+        <div class="stat-item">
+            <div class="stat-num">+18,400</div>
+            <div class="stat-label">محادثة ذكية يومياً</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">99.9%</div>
+            <div class="stat-label">سرعة واستقرار الخدمة</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">4.9/5 ★</div>
+            <div class="stat-label">تقييم أصحاب المشاريع</div>
+        </div>
+    </div>
+</section>
+
+<div class="workspace">
+    <!-- Left Column: Builder -->
+    <div>
+        <div class="step-header">
+            <div class="step-num">1</div>
+            <div class="step-title">كتالوج الوكلاء الجاهزين (اختر التخصص)</div>
+        </div>
+
+        <div class="catalog-grid">
+            <div class="agent-card active" onclick="chooseAgent(this, '🩺', 'د. سارة - مساعدة العيادة', 'أنتِ سارة، مساعدة طبية ذكية في عيادة. رحبي بالمرضى بلطف، أجيبي عن أوقات العمل وساعديهم في حجز المواعيد.', 'مرحباً بك في العيادة! أنا سارة، كيف يمكنني مساعدتك اليوم في حجز موعد أو الاستفسار؟')">
+                <div class="card-top">
+                    <div class="card-icon">🩺</div>
+                    <span class="verified-pill">مُعتمد ✓</span>
+                </div>
+                <h3>وكيل عيادة طبية</h3>
+                <p>تنظيم المواعيد، الرد على استفسارات المرضى، وتذكيرهم بالزيارات.</p>
+            </div>
+
+            <div class="agent-card" onclick="chooseAgent(this, '🚗', 'أمين - مستشار التأمين', 'أنت أمين، خبير تأمين السيارات. اطلب من الزبون نوع سيارته وقوة المحرك وسنة الصنع لحساب أفضل عرض تأمين.', 'أهلاً بك! معك أمين لخدمات تأمين السيارات. أرسل لي نوع سيارتك لأقدم لك أفضل عرض ثمن.')">
+                <div class="card-top">
+                    <div class="card-icon">🚗</div>
+                    <span class="verified-pill">مُعتمد ✓</span>
+                </div>
+                <h3>وكيل تأمين السيارات</h3>
+                <p>حساب عروض الأثمنة، تذكير بتجديد التأمين، ومساعدة ملفات الحوادث.</p>
+            </div>
+
+            <div class="agent-card" onclick="chooseAgent(this, '💼', 'ليلى - سكرتيرة تنفيذية', 'أنتِ ليلى، سكرتيرة تنفيذية محترفة. نظمي المواعيد، لخصي رسائل الزبناء، وأجيبي باحترافية عالية.', 'مرحباً! أنا ليلى، السكرتيرة الخاصة. كيف يمكنني تنظيم موعدك أو إيصال رسالتك؟')">
+                <div class="card-top">
+                    <div class="card-icon">💼</div>
+                    <span class="verified-pill">مُعتمد ✓</span>
+                </div>
+                <h3>مساعد وسكرتير شخصي</h3>
+                <p>إدارة الأجندة، الرد على الرسائل الإدارية، وفرز المكالمات المهمة.</p>
+            </div>
+
+            <div class="agent-card" onclick="chooseAgent(this, '🛍️', 'طارق - خبير المبيعات', 'أنت طارق، مسؤول مبيعات في متجر إلكتروني. أقنع الزبون بالمنتج، أكد طلبيته، واطلب الاسم والمدينة والعنوان.', 'مرحباً بك في متجرنا! أنا طارق، أخبرني بالمنتج الذي أعجبك وسأؤكد طلبيتك فوراً.')">
+                <div class="card-top">
+                    <div class="card-icon">🛍️</div>
+                    <span class="verified-pill">مُعتمد ✓</span>
+                </div>
+                <h3>وكيل متجر إلكتروني</h3>
+                <p>تأكيد الطلبيات (Confirmation)، تتبع التوصيل، وزيادة المبيعات.</p>
+            </div>
+
+            <div class="agent-card" onclick="chooseAgent(this, '🏢', 'كريم - مستشار عقاري', 'أنت كريم، وكيل عقاري ذكي. اسأل الزبون هل يبحث عن شراء أم كراء، وفي أي حي، وما هي ميزانيته.', 'أهلاً بك! معك كريم للخدمات العقارية. هل تبحث عن شقة للكراء أم للشراء؟')">
+                <div class="card-top">
+                    <div class="card-icon">🏢</div>
+                    <span class="verified-pill">مُعتمد ✓</span>
+                </div>
+                <h3>وكيل عقاري وكراء</h3>
+                <p>عرض الشقق والسيارات المتوفرة، تحديد زيارات المعاينة، وفلترة الزبناء.</p>
+            </div>
+
+            <div class="agent-card" onclick="chooseAgent(this, '🍕', 'نادية - مسؤولة الطلبات', 'أنتِ نادية، مسؤولة استقبال الطلبات في مطعم. اعرضي قائمة الوجبات، خذي الطلبية والعنوان، وأكدي وقت التوصيل.', 'مرحباً بك! أنا نادية، شهية طيبة مسبقاً! ماذا تود أن تطلب اليوم؟')">
+                <div class="card-top">
+                    <div class="card-icon">🍕</div>
+                    <span class="verified-pill">مُعتمد ✓</span>
+                </div>
+                <h3>وكيل مطاعم وتوصيل</h3>
+                <p>استقبال طلبات الأكل، حساب الفاتورة، وإرسالها للمطبخ فوراً.</p>
+            </div>
+        </div>
+
+        <div class="panel-box">
+            <div class="step-header">
+                <div class="step-num">2</div>
+                <div class="step-title">برمجة هوية وتعليمات الوكيل</div>
+            </div>
+
+            <div class="input-group">
+                <label>اسم الوكيل <span>(يظهر لزبنائك أثناء المحادثة)</span></label>
+                <input type="text" id="agentName" value="د. سارة - مساعدة العيادة" oninput="syncAgentUI()">
+            </div>
+
+            <div class="input-group">
+                <label>مربع التعليمات وقوانين عملك <span>(اكتب بالدارجة، العربية، أو الفرنسية)</span></label>
+                <textarea id="agentPrompt" rows="3">أنتِ سارة، مساعدة طبية ذكية في عيادة بالدار البيضاء. أوقات العمل من الإثنين للسبت (9 صباحاً إلى 6 مساءً). ثمن الفحص 200 درهم. أجيبي باختصار ولباقة.</textarea>
+            </div>
+
+            <div class="step-header" style="margin-top: 2rem;">
+                <div class="step-num">3</div>
+                <div class="step-title">اختر المنصات والخدمات (افتح القفل لتفعيل الميزة)</div>
+            </div>
+
+            <div class="channels-grid">
+                <div class="channel-card unlocked">
+                    <div class="channel-info">
+                        <span>🌐</span>
+                        <div>
+                            <div class="channel-title">رابط الويب المباشر</div>
+                            <div class="channel-sub">تجربة غير محدودة</div>
+                        </div>
+                    </div>
+                    <span class="tier-badge tier-free">مُفعّل مجاناً</span>
+                </div>
+
+                <div class="channel-card" id="ch-whatsapp" onclick="triggerLock('ch-whatsapp', 'واتساب للأعمال (WhatsApp)', 9, 'PRO')">
+                    <div class="channel-info">
+                        <span>💬</span>
+                        <div>
+                            <div class="channel-title">واتساب (WhatsApp)</div>
+                            <div class="channel-sub">رد تلقائي + أوديو</div>
+                        </div>
+                    </div>
+                    <span class="tier-badge tier-pro">🔒 PRO • 9$</span>
+                </div>
+
+                <div class="channel-card" id="ch-insta" onclick="triggerLock('ch-insta', 'إنستغرام & ماسنجر', 7, 'PRO')">
+                    <div class="channel-info">
+                        <span>📸</span>
+                        <div>
+                            <div class="channel-title">إنستغرام & ماسنجر</div>
+                            <div class="channel-sub">رد على الرسائل والتعليقات</div>
+                        </div>
+                    </div>
+                    <span class="tier-badge tier-pro">🔒 PRO • 7$</span>
+                </div>
+
+                <div class="channel-card" id="ch-tiktok" onclick="triggerLock('ch-tiktok', 'تيك توك ومنصة X', 7, 'PRO')">
+                    <div class="channel-info">
+                        <span>🎵</span>
+                        <div>
+                            <div class="channel-title">تيك توك & X</div>
+                            <div class="channel-sub">تحويل المتابعين لزبناء</div>
+                        </div>
+                    </div>
+                    <span class="tier-badge tier-pro">🔒 PRO • 7$</span>
+                </div>
+
+                <div class="channel-card" id="ch-calls" onclick="triggerLock('ch-calls', 'مكالمات هاتفية صوتية AI', 25, 'ULTRA')">
+                    <div class="channel-info">
+                        <span>📞</span>
+                        <div>
+                            <div class="channel-title">اتصال هاتفي بالزبناء</div>
+                            <div class="channel-sub">صوت بشري طبيعي 100%</div>
+                        </div>
+                    </div>
+                    <span class="tier-badge tier-ultra">🔒 ULTRA • 25$</span>
+                </div>
+
+                <div class="channel-card" id="ch-sheets" onclick="triggerLock('ch-sheets', 'حفظ الزبناء في Excel / Sheets', 5, 'PRO')">
+                    <div class="channel-info">
+                        <span>📊</span>
+                        <div>
+                            <div class="channel-title">تصدير أرقام الزبناء</div>
+                            <div class="channel-sub">حفظ تلقائي في Google Sheets</div>
+                        </div>
+                    </div>
+                    <span class="tier-badge tier-pro">🔒 PRO • 5$</span>
+                </div>
+            </div>
+
+            <div class="billing-summary">
+                <div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);">الاشتراك الشهري المخصص لوكيلك:</div>
+                    <div class="total-price" id="totalCostDisplay">0$ <span style="font-size: 0.85rem; color: var(--emerald);">(الباقة المجانية)</span></div>
+                </div>
+                <button class="btn-launch" onclick="deployAgent()">تشغيل الوكيل وحفظ الإعدادات 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Interactive Live Phone -->
+    <div class="phone-wrapper">
+        <div class="phone-frame">
+            <div class="phone-header">
+                <div class="agent-profile">
+                    <div class="avatar-circle" id="phoneAvatar">🩺</div>
+                    <div>
+                        <div style="font-weight: 800; font-size: 0.95rem;" id="phoneAgentName">د. سارة - مساعدة العيادة</div>
+                        <div class="online-indicator">
+                            <div class="pulse-dot"></div>
+                            <span id="aiModeStatus">متصل • وضع التجربة الحية</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-clear" onclick="resetChat()">مسح المحادثة</button>
+            </div>
+
+            <div class="chat-messages" id="chatContainer">
+                <div class="bubble agent" id="initialGreeting">مرحباً بك في العيادة! أنا سارة، كيف يمكنني مساعدتك اليوم في حجز موعد أو الاستفسار؟</div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">الوكيل يكتب الآن...</div>
+
+            <div class="phone-footer">
+                <input type="text" id="chatInput" placeholder="جرّب التحدث مع وكيلك الآن..." onkeypress="if(event.key==='Enter') handleSend()">
+                <button class="btn-send-msg" onclick="handleSend()">➤</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Unlock Lock Modal -->
+<div class="modal-overlay" id="lockModal">
+    <div class="modal-box">
+        <div style="font-size: 2.8rem;">🔓</div>
+        <h2 id="lockTitle" style="margin-top: 0.5rem; font-weight: 800;">فتح ميزة واتساب</h2>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">اربط وكيلك مباشرة بهذه المنصة ليبدأ في استقبال الرسائل والرد على الزبناء تلقائياً على مدار الساعة.</p>
+        <div class="modal-price" id="lockPrice">9$ <span style="font-size: 1rem; color: var(--text-secondary);">/ شهر</span></div>
+        <div style="font-size: 0.8rem; color: var(--emerald); background: rgba(16,185,129,0.1); padding: 6px; border-radius: 8px;">✓ تفعيل فوري • ✓ إلغاء في أي وقت • ✓ ضمان استرجاع 7 أيام</div>
+        <div class="modal-actions">
+            <button class="btn-confirm" onclick="confirmUnlock()">تأكيد وإضافة للوكيل</button>
+            <button class="btn-cancel" onclick="closeLockModal()">إغلاق</button>
+        </div>
+    </div>
+</div>
+
+<!-- Gemini API Key Modal -->
+<div class="modal-overlay" id="apiModal">
+    <div class="modal-box">
+        <div style="font-size: 2.5rem;">🔑</div>
+        <h2 style="margin-top: 0.5rem; font-weight: 800;">تفعيل الذكاء الاصطناعي الحقيقي</h2>
+        <p style="color: var(--text-secondary); font-size: 0.88rem; margin: 0.6rem 0 1.2rem;">أدخل مفتاح <b>Google Gemini API</b> المجاني لتجعل الوكيل يجاوب بذكاء اصطناعي حقيقي 100% حسب تعليماتك.</p>
+        <input type="password" id="geminiKeyInput" placeholder="AIzaSy...">
+        <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 0.6rem; text-align: right;">* المفتاح يُحفظ في متصفحك فقط ولا يُرسل لأي طرف ثالث.</div>
+        <div class="modal-actions">
+            <button class="btn-confirm" onclick="saveApiKey()">حفظ وتفعيل الذكاء</button>
+            <button class="btn-cancel" onclick="closeApiModal()">إلغاء</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p><strong>REbo AI</strong> — الجيل الجديد من وكلاء الذكاء الاصطناعي للأعمال • جميع البيانات محمية بتشفير 256-bit SSL</p>
+    <p style="margin-top: 6px;">© 2026 REbo AI Platform • جميع الحقوق محفوظة</p>
+</footer>
+
+<script>
+    let currentGreeting = "مرحباً بك في العيادة! أنا سارة، كيف يمكنني مساعدتك اليوم في حجز موعد أو الاستفسار؟";
+    let selectedLock = null;
+    let totalMonthly = 0;
+    let geminiApiKey = localStorage.getItem('rebo_gemini_key') || '';
+
+    if (geminiApiKey) {
+        updateApiConnectedUI();
+    }
+
+    function chooseAgent(card, icon, name, prompt, greeting) {
+        document.querySelectorAll('.agent-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+
+        document.getElementById('agentName').value = name;
+        document.getElementById('agentPrompt').value = prompt;
+        document.getElementById('phoneAvatar').innerText = icon;
+        document.getElementById('phoneAgentName').innerText = name;
+        currentGreeting = greeting;
+
+        resetChat();
+    }
+
+    function syncAgentUI() {
+        const name = document.getElementById('agentName').value;
+        document.getElementById('phoneAgentName').innerText = name || 'وكيل REbo الذكي';
+    }
+
+    function resetChat() {
+        const container = document.getElementById('chatContainer');
+        container.innerHTML = `<div class="bubble agent">${currentGreeting}</div>`;
+    }
+
+    // Lock System
+    function triggerLock(id, title, price, tier) {
+        const card = document.getElementById(id);
+        if (card.classList.contains('unlocked')) return;
+
+        selectedLock = { id, price };
+        document.getElementById('lockTitle').innerText = `فتح ميزة: ${title}`;
+        document.getElementById('lockPrice').innerHTML = `${price}$ <span style="font-size: 1rem; color: var(--text-secondary);">/ شهر</span>`;
+        document.getElementById('lockModal').style.display = 'flex';
+    }
+
+    function closeLockModal() {
+        document.getElementById('lockModal').style.display = 'none';
+    }
+
+    function confirmUnlock() {
+        if (!selectedLock) return;
+        const card = document.getElementById(selectedLock.id);
+        card.classList.add('unlocked');
+        const badge = card.querySelector('.tier-badge');
+        badge.className = 'tier-badge tier-free';
+        badge.innerText = 'مُفعّل 🔓';
+
+        totalMonthly += selectedLock.price;
+        document.getElementById('totalCostDisplay').innerHTML = `${totalMonthly}$ <span style="font-size: 0.85rem; color: var(--text-secondary);">/ شهرياً</span>`;
+        closeLockModal();
+    }
+
+    // API Modal
+    function openApiModal() {
+        document.getElementById('geminiKeyInput').value = geminiApiKey;
+        document.getElementById('apiModal').style.display = 'flex';
+    }
+
+    function closeApiModal() {
+        document.getElementById('apiModal').style.display = 'none';
+    }
+
+    function saveApiKey() {
+        const key = document.getElementById('geminiKeyInput').value.trim();
+        geminiApiKey = key;
+        localStorage.setItem('rebo_gemini_key', key);
+        if (key) {
+            updateApiConnectedUI();
+        }
+        closeApiModal();
+    }
+
+    function updateApiConnectedUI() {
+        const btn = document.getElementById('apiBtn');
+        btn.classList.add('connected');
+        document.getElementById('apiBtnText').innerText = 'Gemini AI مُتصل ✓';
+        document.getElementById('aiModeStatus').innerText = 'متصل • ذكاء اصطناعي حقيقي 100%';
+    }
+
+    // Real AI & Smart Fallback Chat
+    async function handleSend() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text) return;
+
+        const container = document.getElementById('chatContainer');
+        container.innerHTML += `<div class="bubble user">${text}</div>`;
+        input.value = '';
+        container.scrollTop = container.scrollHeight;
+
+        const typing = document.getElementById('typingIndicator');
+        typing.style.display = 'block';
+
+        const agentName = document.getElementById('agentName').value;
+        const systemInstructions = document.getElementById('agentPrompt').value;
+
+        if (geminiApiKey) {
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `أنت وكيل ذكاء اصطناعي اسمك "${agentName}". التزم بهذه التعليمات بدقة: "${systemInstructions}". أجب بنفس لغة أو لهجة الزبون (دارجة مغربية أو عربية أو فرنسية) باحترافية واختصار. رسالة الزبون: ${text}`
+                            }]
+                        }]
+                    })
+                });
+                const data = await response.json();
+                typing.style.display = 'none';
+                const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "عذراً، تأكد من صحة مفتاح API.";
+                container.innerHTML += `<div class="bubble agent">${reply}</div>`;
+            } catch (err) {
+                typing.style.display = 'none';
+                container.innerHTML += `<div class="bubble agent">⚠️ تعذر الاتصال بالخادم، تأكد من مفتاح API أو اتصال الإنترنت.</div>`;
+            }
+        } else {
+            setTimeout(() => {
+                typing.style.display = 'none';
+                const smartDemoReply = `أهلاً بك! بصفتي (${agentName})، يسعدني خدمتك بخصوص "${text}". وفقاً لتعليمات العمل لدينا (${systemInstructions.slice(0, 55)}...)، تم تسجيل طلبك بنجاح! (ملاحظة: أضف مفتاح Gemini API من الأعلى لتفعيل الردود الذكية الحرة).`;
+                container.innerHTML += `<div class="bubble agent">${smartDemoReply}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 800);
+        }
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function deployAgent() {
+        const name = document.getElementById('agentName').value;
+        alert(`🎉 مبروك! تم إعداد الوكيل "${name}" بنجاح.\nقيمة الباقة المختارة: ${totalMonthly}$ شهرياً.\nيمكنك الآن تجربته مباشرة في شاشة الهاتف!`);
+    }
+</script>
+
+</body>
+</html>
